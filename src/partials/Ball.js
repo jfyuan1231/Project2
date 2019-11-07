@@ -1,31 +1,31 @@
-import {SVG_NS, BOARD_COLOR} from "../settings.js";
+import {SVG_NS} from "../settings.js";
 export default class Ball {
     constructor(radius, boardWidth, boardHeight) {
-      this.radius = radius;
-      this. boardWidth = boardWidth;
-      this.boardHeight = boardHeight;
-      this.direction = 1;
-      this.reset();
+        this.radius = radius;
+        this. boardWidth = boardWidth;
+        this.boardHeight = boardHeight;
+        this.direction = 1;
+        this.reset();
     }
     //change x and y
     ballMove() {
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
     }
-      reset() {
+    reset() {
         this.x = this.boardWidth/2;
         this.y = this.boardHeight/2;
         this.vy = 0;
         while (this.vy === 0) {
             this.vy = Math.floor(Math.random() * 10) - 5;
         }
-      this.vx = this.direction * (6 - Math.abs(this.vy));
-      }
-    wallCollision() {
-        
+        this.vx = this.direction * (6 - Math.abs(this.vy));
     }
-
-
+    //wallCollision() {
+    
+    // }
+    
+    
     render(svg) {
         const ball = document.createElementNS(SVG_NS, "circle");
         ball.setAttributeNS(null, "r", this.radius);
@@ -33,8 +33,10 @@ export default class Ball {
         ball.setAttributeNS(null, "cy", this.y);
         ball.setAttributeNS(null, "fill", "white");
         svg.appendChild(ball);
-    
-
-      //...
+        this.ballMove();
+        // this.wallCollision();
+        
+        
+        //...
     }
 }
