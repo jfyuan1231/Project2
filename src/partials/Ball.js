@@ -21,9 +21,17 @@ export default class Ball {
         }
         this.vx = this.direction * (6 - Math.abs(this.vy));
     }
-    //wallCollision() {
+    wallCollision() {
+        const hitTop = (this.y - this.radius <= 0);
+        const hitBottom = (this.y + this.radius >= this.boardHeight);
+        if (hitTop || hitBottom) {
+            this.vy = this.vy * -1;
+        }
+    //paddleCollision() {
+
+   // }
     
-    // }
+    }
     
     
     render(svg) {
@@ -34,7 +42,7 @@ export default class Ball {
         ball.setAttributeNS(null, "fill", "white");
         svg.appendChild(ball);
         this.ballMove();
-        // this.wallCollision();
+        this.wallCollision();
         
         
         //...
