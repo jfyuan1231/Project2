@@ -1,6 +1,6 @@
-import { SVG_NS } from "../settings.js";
-export default class Board {
-    constructor(width, height,boardHeight, x, y) {
+import { SVG_NS, PADDLE_HEIGHT } from "../settings.js";
+export default class Paddle {
+    constructor(width, height,boardHeight, x, y, upKey, downKey) {
       this.width = width;
       this.height = height;
       this.boardHeight = boardHeight;
@@ -9,7 +9,38 @@ export default class Board {
       this.score = 0;
       this.speed = 10;
 
-    }
+          document.addEventListener("keydown", event => {
+            switch (event.key) {
+              case upKey:
+                this.moveUp();
+                // this.moveUp();
+                // console.log("moveUp");
+                break;
+              case downKey:
+                this.moveDown();
+                break;
+            default:
+              console.log("another key was pressed");
+            }
+          });
+        }
+        moveUp() {
+          this.y = Math.max(0, this.y - this.speed)  
+          }
+        moveDown() {
+          this.y = Math.min(this.boardHeight - this.height, this.y + this.speed)
+          }
+
+        // moveUp() {
+        //   if (this.y > 0) {
+        //     this.y -= this.speed;
+        //   } 
+        // }
+        // moveDown() {
+        //   if (this.y < this.boardHeight - this.height)
+        //   this.y += this.speed;
+        //  }
+
     render(svg) {
         const paddle = document.createElementNS(SVG_NS, "rect");
         paddle.setAttributeNS(null, "width", this.width);
@@ -21,3 +52,5 @@ export default class Board {
         svg.appendChild(paddle);
     }
 }
+  
+
