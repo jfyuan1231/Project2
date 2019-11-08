@@ -31,6 +31,15 @@ export default class Paddle {
           this.y = Math.min(this.boardHeight - this.height, this.y + this.speed)
           }
 
+          getCoordinates() {
+            return {
+              left: this.x,
+              top: this.y,
+              right: this.x + this.width,
+              bottom: this.y + this.height
+            };
+          }
+
         // moveUp() {
         //   if (this.y > 0) {
         //     this.y -= this.speed;
