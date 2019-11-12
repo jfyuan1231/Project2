@@ -5,10 +5,6 @@ export default class Score {
         this.x = x;
         this.y = y;
         this.size = size;
-
-        // const hitLeft = (this.x - this.radius < 0);
-        // const hitRight = (this.x + this.radius > this.boardWidth);
-
     }
 
     render (svg, score) {

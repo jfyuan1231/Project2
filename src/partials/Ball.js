@@ -9,11 +9,12 @@ export default class Ball {
         this.ping = new Audio(pingSound);
         this.reset();
     }
-    //change x and y
+
     ballMove() {
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
     }
+
     reset() {
         this.x = this.boardWidth/2;
         this.y = this.boardHeight/2;
@@ -23,6 +24,7 @@ export default class Ball {
         }
         this.vx = this.direction * (6 - Math.abs(this.vy));
     }
+
     wallCollision(paddle1, paddle2) {
         const hitTop = (this.y - this.radius <= 0);
         const hitBottom = (this.y + this.radius >= this.boardHeight);
@@ -42,8 +44,10 @@ export default class Ball {
             this.reset();
         }
     }
+
     paddleCollision(paddle1, paddle2) {
-      const hitWall = false, checkTop = false, checkBottom = false;
+      let hitWall = false, checkTop = false, checkBottom = false;
+
       if (this.vx > 0) {
         const p2Walls = paddle2.getCoordinates();
             hitWall = (this.x + this.radius >= p2Walls.left);
@@ -54,13 +58,13 @@ export default class Ball {
          hitWall = (this.x - this.radius <= p1Walls.right);
          checkTop = (this.y - this.radius >= p1Walls.top);
          checkBottom = (this.y + this.radius <= p1Walls.bottom);
-   }
-   if (hitWall && checkTop && checkBottom) {
-    this.ping.play();
-    this.vx = this.vx * -1;
-  
-}
     }
+   
+      if (hitWall && checkTop && checkBottom) {
+       this.ping.play();
+       this.vx = this.vx * -1;
+    }
+}
       
     render(svg, paddle1, paddle2) {
         const ball = document.createElementNS(SVG_NS, "circle");
