@@ -9,7 +9,7 @@ export const PADDLE_GAP = 10;
 export const PADDLE_SPEED = 10;
 
 export const BALL1_RADIUS = 8;
-export const BALL2_RADIUS = 15;
+export const BALL2_RADIUS = 10;
 
 export const WIN_SCORE = 5;
 

@@ -1,5 +1,6 @@
 import {SVG_NS} from "../settings.js";
 import pingSound from"../../public/sounds/pong-01.wav";
+
 export default class Ball {
     constructor(radius, boardWidth, boardHeight) {
         this.radius = radius;
@@ -8,13 +9,17 @@ export default class Ball {
         this.direction = 1;
         this.ping = new Audio(pingSound);
         this.reset();
+        // this.speed = 1;
     }
+    // setSpeed () {
+    // this.speed = ; 
+    // }
 
     ballMove() {
-        this.x = this.x + this.vx;
-        this.y = this.y + this.vy;
+    this.x = this.x + this.vx;
+    this.y = this.y + this.vy;
     }
-
+  
     reset() {
         this.x = this.boardWidth/2;
         this.y = this.boardHeight/2;
@@ -36,11 +41,13 @@ export default class Ball {
         if (hitLeft) {
             this.direction = 1;
             paddle2.increaseScore();
+            paddle2.height -= 10;
             this.reset();
         }
         else if (hitRight) {
             this.direction = -1;
             paddle1.increaseScore();
+            paddle1.height -= 10;
             this.reset();
         }
     }
