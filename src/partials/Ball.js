@@ -9,11 +9,7 @@ export default class Ball {
         this.direction = 1;
         this.ping = new Audio(pingSound);
         this.reset();
-        // this.speed = 1;
     }
-    // setSpeed () {
-    // this.speed = ; 
-    // }
 
     ballMove() {
     this.x = this.x + this.vx;
